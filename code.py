@@ -4,7 +4,7 @@ con=sqlite3.connect('student.db')
 c=con.cursor()
 c.execute("""  CREATE TABLE IF NOT EXISTS Studentdata
 (
-    stid VARCHAR(10) NOT NULL,
+    stid VARCHAR(10) NOT NULL PRIMARY KEY,
     stfirstname VARCHAR(10) NOT NULL ,
     stlastname VARCHAR(10) NOT NULL,
     stdob VARCHAR(10) NOT NULL,
@@ -49,7 +49,7 @@ class Student:
         
         while True:
             self.stdob=input("Enter The DOB DD-MM-YYYY : ")
-            patterndob=r"((?:0[1-9])|(?:[0-2]))\/((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\/(\d{4})"
+            patterndob=r"^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$"
             if re.search(patterndob,self.stdob):
                 print("DOB Added")
                 break
